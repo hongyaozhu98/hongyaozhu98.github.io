@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh-cn">
   <head>
   <meta charset="utf-8">
-  <title>Blogs</title>
+  <title></title>
 
   <meta name="generator" content="Hugo 0.59.0" />
 
@@ -46,11 +46,12 @@
 </head>
 <body>
   
-  <!-- navigation -->
-  <header class="shadow-bottom sticky-top bg-white">
-    <div class="container">
+  <!-- header -->
+  <header class="hero-section overlay bg-cover banner" data-background="/images/data-science.jpg">
+    <div class="container mb-100">
+      <!-- navigation -->
       <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="/en">
+  <a class="navbar-brand" href="/zh">
     
     
     
@@ -65,12 +66,12 @@
   <div class="collapse navbar-collapse text-center" id="navigation">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link text-dark" href="/en">Home</a>
+        <a class="nav-link text-dark" href="/zh"></a>
       </li>
       
       
       <li class="nav-item">
-        <a class="nav-link text-dark" href="/blog">blog</a>
+        <a class="nav-link text-dark" href="/blog">R����</a>
       </li>
       
       
@@ -78,13 +79,13 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
-          Resume
+          ����
         </a>
         <div class="dropdown-menu" >
           
-          <a class="dropdown-item" href="/resume/resume-eng.pdf">English</a>
+          <a class="dropdown-item" href="/resume/resume-eng.pdf">Ӣ�ļ���</a>
           
-          <a class="dropdown-item" href="/resume/resume-zh_CN.pdf">Chinese</a>
+          <a class="dropdown-item" href="/resume/resume-zh_CN.pdf">���ļ���</a>
           
         </div>
       </li>
@@ -94,200 +95,67 @@
     
   </div>
 </nav>
+      <!-- /navigation -->
     </div>
+    <!-- banner -->
+<div class="container">
+    <div class="row">
+    <div class="col-lg-8 text-center mx-auto">
+    <h1 class="text-white mb-3">����Ң</h1>
+    <p class="text-white mb-4">��־��Ϊ�ܳ����ݷ���ʦ</p>
+        <div class="position-relative">
+        <input id="search" class="form-control" placeholder="����">
+        
+        <script>
+            $(function() {
+            var projects = [
+                
+            ];
+            $( "#search" ).autocomplete({
+                minLength: 0,
+                source: projects,
+                focus: function( event, ui ) {
+                    $( "#search" ).val( ui.item.label );
+                    return false;
+                },
+                select: function( event, ui ) {
+                    $( "#search" ).val( ui.item.label );
+                    $( "#project-id" ).val( ui.item.value );
+                    return false;
+                }
+            })
+            .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+                return $( "<li>" )
+                .append( "<a href=" + item.url + " + \" &quot;\" +  >" + item.label + "</a>" )
+                .appendTo( ul );
+            };
+            });
+        </script>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- /banner -->
   </header>
-  <!-- /navigation -->
+  <!-- /header -->
   
   <div id="content">
 
-<!-- details page -->
-<section class="single section bg-gray pb-0">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3">
-        <div class="mb-5 bg-white p-4 sticky-top top-100">
-          <ul class="list-styled">
-            
-            
-            <a class="d-block h4 back-btn" href="/en"></a>
-            
-            
-
-
-
-
-<li data-nav-id="/blog/" title="Blogs" class="sidelist
-  parent
-  active
-  ">
-  <a href="/blog/">
-    Blogs
-  </a>
-  
-  
-  <ul>
-    
-    
-    
-
-    
-    
-    
-
-
-
-
-<li data-nav-id="/blog/r-blog/" title="How to Create a R Package" class="sidelist
-  
-  
-  ">
-  <a href="/blog/r-blog/">
-    How to Create a R Package
-  </a>
-  
-  
-
-
-    
-    
-  </ul>
-</li>
-
-
-
-            
-          </ul>
+  <!-- topics -->
+  <section class="section bg-gray">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 text-center">
+           <h2 class="section-title">����</h2> 
         </div>
-      </div>
-      <div class="col-lg-9">
-        <div class="p-5 bg-white">
-          <h2 class="mb-5">Blogs</h2>
-          
-          <div class="bg-gray p-4">
-            <ul class="page-list">
-              
-
-
-
-
-<li data-nav-id="/blog/" title="Blogs" class="sidelist
-  parent
-  active
-  ">
-  <a href="/blog/">
-    Blogs
-  </a>
-  
-  
-  <ul>
-    
-    
-    
-
-    
-    
-    
-
-
-
-
-<li data-nav-id="/blog/r-blog/" title="How to Create a R Package" class="sidelist
-  
-  
-  ">
-  <a href="/blog/r-blog/">
-    How to Create a R Package
-  </a>
-  
-  
-
-
-    
-    
-  </ul>
-</li>
-
-
-
-            </ul>
-          </div>
-          
-          <p class="post-meta border-bottom pb-3 mb-0 mt-3">Updated on 01 Jan 0001</p>
-          <nav class="pagination mt-3">
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-
-            
-            
-            
-            
-            
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-
-            
-            
-            
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-
-            
-            
-            
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-
-            
-            <a class="nav nav-prev" href="/"><i class="ti-arrow-left mr-2"></i></a>
-            
-            
-            <a class="nav nav-next" href="/blog/r-blog/">How to Create a R Package<i class="ti-arrow-right ml-2"></i></a>
-            
-          </nav>
-        </div>
+        <!-- topic-item -->
+        
       </div>
     </div>
-  </div>
-</section>
-<!-- /details page -->
+  </section>
+  <!-- /topics -->
 
-
-
+  
 
 
   </div><!-- footer -->
