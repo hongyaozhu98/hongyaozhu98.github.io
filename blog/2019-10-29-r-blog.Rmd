@@ -1,0 +1,163 @@
+---
+title: How to Create a R Package
+author: Hongyao Zhu
+date: '2019-10-29'
+slug: r-blog
+categories: []
+tags: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+# Required Package
+
+To make our own R package, we will use devtools and roxygen2 packages. Make sure to install these two packages using install.packages() function.
+
+# Create the Package
+
+First of all, create a new project in a new directory in File >> New Project.
+
+![](/blog/2019-10-29-r-blog_files/1.jpg)
+
+Select the project type as an R Package.
+
+![](/blog/2019-10-29-r-blog_files/2.bmp)
+
+Name the R Package, select the working directory where the R package will be in, and click 'Create Package'.
+
+![](/blog/2019-10-29-r-blog_files/3.jpg)
+
+Here, we have the folder for our package. We can see it on the right bottom part of our RStudio.
+
+![](/blog/2019-10-29-r-blog_files/4.bmp)
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+# Implementation of Package
+
+To write a useful package, you may create the function, documentation, and the sample data for the package.
+
+## Create a Function
+
+Go to File >> New File >> R Script to create an R file with a function for our package.
+
+A sample function will be 
+
+```{r, message=FALSE}
+# Sample function with library.
+
+library(ggplot2)
+diamond_plot <- function(df, varx, vary){
+  ggplot(df, aes(x=get(varx), y=get(vary))) +
+  geom_point(shape=23, fill="blue", color="darkred", size=3)
+}
+```
+
+Here, ggplot2 package will be used. We can save this R Script as diamond_plot.R in the R folder of our package.
+
+We can take a loot at this function.
+
+```{r}
+# Draw sample plot with the function.
+
+df.test <- data.frame(x = rnorm(10),
+                      y = rnorm(10))
+diamond_plot(df.test, 'x', 'y')
+
+```
+
+Here, open the folder R, there should be an R Script file named diamond_plot.R
+
+![](/blog/2019-10-29-r-blog_files/5.bmp)
+
+## Write the document.
+
+Make sure you are still under the working directory of the package by checking the directory under the console.
+
+Library the required packages in the concole.
+
+```{r, message=FALSE}
+library(devtools)
+library(roxygen2)
+```
+
+Keep the script diamond_plot.R open, go to Code >> Insert Roxygen Skeleton. This will add documentation to the function. The script will be like this. 
+
+![](/blog/2019-10-29-r-blog_files/6.bmp)
+
+* @param indicates the parameters you used
+
+* @return indicates the return type
+
+* @export is to add this function to the NAMESPACE file, so that it will be accessible to users
+
+* @importFrom indicates the packages needed
+
+* @examples is where you can write an example, like what we did above
+
+We can also open the DESCRIPTION file in the root index of the package to edit the Title, Version, Author of this package.
+
+![](/blog/2019-10-29-r-blog_files/7.bmp)
+
+## Add Sample Data
+
+To add sample data to the package, make a data folder. Just click on the New Folder bottom on the right bottom of the RStudio.
+
+Save the data in using .RData file by type the following in the console.
+
+`r ''`
+```{r, eval=FALSE}
+# Sample data
+sample_data <- data.frame(x = rnorm(10),
+                          y = rnorm(10),
+                          z = rnorm(10))
+                          
+save(sample_data, 
+     file = 'ExamplePackage/data/sample_data.RData')
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+# Install and Check the Packages
+
+Using document function in the consule to check the package, make sure you are in the same working directory as the package.
+
+```{r, eval=FALSE}
+# Check the function
+document()
+```
+
+Then go down one level in the working director and run the following code in the console.
+
+```{r, eval=FALSE}
+# Go down one level
+setwd('..')
+
+# Install the package
+install('ExamplePackage')
+```
+
+After the process finishes, the implement of our package successes.
+
+## Check the Document and Data
+
+Type in the console to test the package.
+
+```{r, eval=FALSE}
+# See the document
+?diamond_plot
+
+# See the data
+data(sample_data)
+```
+
+# Upload the Package
+
+Make a new repository with the same name as our package, and make it public. Add the package to Github.
+
+To install our package from the Github just type in console:
+
+```{r, eval=FALSE}
+devtools::install_github('yourusername/ExamplePackage')
+```

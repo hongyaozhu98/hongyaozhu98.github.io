@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>/</link>
+    <description>Recent content on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Oct 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to Create a R Package</title>
+      <link>/blog/r-blog/</link>
+      <pubDate>Tue, 29 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/r-blog/</guid>
+      <description>1 Required Package2 Create the Package3 Implementation of Package3.1 Create a Function3.2 Write the document.3.3 Add Sample Data4 Install and Check the Packages4.1 Check the Document and Data5 Upload the Package1 Required PackageTo make our own R package, we will use devtools and roxygen2 packages. Make sure to install these two packages using install.packages() function.</description>
+    </item>
+    
+  </channel>
+</rss>

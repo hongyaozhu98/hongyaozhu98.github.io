@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <title>How to Create a R Package</title>
+
+  <meta name="generator" content="Hugo 0.59.0" />
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- ** Plugins Needed for the Project ** -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="/plugins/themify-icons/themify-icons.css">
+  <!-- highlight -->
+  <link rel="stylesheet" href="/plugins/highlight/hybrid.css">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+  <style>
+  :root{
+    --primary-color:#000033;
+    --secondary-color:#f9f9f9;
+    --text-color:#636363;
+    --text-color-dark:#242738;
+    --white-color:#ffffff;
+  }  
+  </style>
+
+<!-- Main Stylesheet -->
+
+<link rel="stylesheet" href="/css/style.min.css" integrity="" media="screen">
+
+<!-- jquiry -->
+<script src="/plugins/jquery/jquery-1.12.4.js"></script>
+
+<!-- jquary ui -->
+<script src="/plugins/jquery/jquery-ui.js"></script>
+
+<!--Favicon-->
+<link rel="icon" href="/images/favicon.png" type="image/x-icon">
+
+</head>
+<body>
+  
+  <!-- navigation -->
+  <header class="shadow-bottom sticky-top bg-white">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="/en">
+    
+    
+    
+    
+    
+  </a>
+  <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+    aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse text-center" id="navigation">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="/en"></a>
+      </li>
+      
+      
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="/blog">blog</a>
+      </li>
+      
+      
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Resume
+        </a>
+        <div class="dropdown-menu" >
+          
+          <a class="dropdown-item" href="/resume/resume-eng.pdf">English</a>
+          
+          <a class="dropdown-item" href="/resume/resume-zh_CN.pdf">Chinese</a>
+          
+        </div>
+      </li>
+      
+      
+    </ul>
+    
+  </div>
+</nav>
+    </div>
+  </header>
+  <!-- /navigation -->
+  
+  <div id="content">
+
+<!-- details page -->
+<section class="single section bg-gray pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="mb-5 bg-white p-4 sticky-top top-100">
+          <ul class="list-styled">
+            
+            
+            <a class="d-block h4 back-btn" href="/en"></a>
+            
+            
+
+
+
+
+<li data-nav-id="/blog/" title="Blogs" class="sidelist
+  parent
+  
+  ">
+  <a href="/blog/">
+    Blogs
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<li data-nav-id="/blog/r-blog/" title="How to Create a R Package" class="sidelist
+  
+  active
+  ">
+  <a href="/blog/r-blog/">
+    How to Create a R Package
+  </a>
+  
+  
+
+
+    
+    
+  </ul>
+</li>
+
+
+
+            
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="p-5 bg-white">
+          <h2 class="mb-5">How to Create a R Package</h2>
+          
+          <div class="content">
+
+<div id="TOC">
+<ul>
+<li><a href="#required-package"><span class="toc-section-number">1</span> Required Package</a></li>
+<li><a href="#create-the-package"><span class="toc-section-number">2</span> Create the Package</a></li>
+<li><a href="#implementation-of-package"><span class="toc-section-number">3</span> Implementation of Package</a><ul>
+<li><a href="#create-a-function"><span class="toc-section-number">3.1</span> Create a Function</a></li>
+<li><a href="#write-the-document."><span class="toc-section-number">3.2</span> Write the document.</a></li>
+<li><a href="#add-sample-data"><span class="toc-section-number">3.3</span> Add Sample Data</a></li>
+</ul></li>
+<li><a href="#install-and-check-the-packages"><span class="toc-section-number">4</span> Install and Check the Packages</a><ul>
+<li><a href="#check-the-document-and-data"><span class="toc-section-number">4.1</span> Check the Document and Data</a></li>
+</ul></li>
+<li><a href="#upload-the-package"><span class="toc-section-number">5</span> Upload the Package</a></li>
+</ul>
+</div>
+
+<div id="required-package" class="section level1">
+<h1><span class="header-section-number">1</span> Required Package</h1>
+<p>To make our own R package, we will use devtools and roxygen2 packages. Make sure to install these two packages using install.packages() function.</p>
+</div>
+<div id="create-the-package" class="section level1">
+<h1><span class="header-section-number">2</span> Create the Package</h1>
+<p>First of all, create a new project in a new directory in File &gt;&gt; New Project.</p>
+<p><img src="/blog/2019-10-29-r-blog_files/1.jpg" /></p>
+<p>Select the project type as an R Package.</p>
+<p><img src="/blog/2019-10-29-r-blog_files/2.bmp" /></p>
+<p>Name the R Package, select the working directory where the R package will be in, and click ‘Create Package’.</p>
+<p><img src="/blog/2019-10-29-r-blog_files/3.jpg" /></p>
+<p>Here, we have the folder for our package. We can see it on the right bottom part of our RStudio.</p>
+<p><img src="/blog/2019-10-29-r-blog_files/4.bmp" /></p>
+<p>    </p>
+</div>
+<div id="implementation-of-package" class="section level1">
+<h1><span class="header-section-number">3</span> Implementation of Package</h1>
+<p>To write a useful package, you may create the function, documentation, and the sample data for the package.</p>
+<div id="create-a-function" class="section level2">
+<h2><span class="header-section-number">3.1</span> Create a Function</h2>
+<p>Go to File &gt;&gt; New File &gt;&gt; R Script to create an R file with a function for our package.</p>
+<p>A sample function will be</p>
+<pre class="r"><code># Sample function with library.
+
+library(ggplot2)
+diamond_plot &lt;- function(df, varx, vary){
+  ggplot(df, aes(x=get(varx), y=get(vary))) +
+  geom_point(shape=23, fill=&quot;blue&quot;, color=&quot;darkred&quot;, size=3)
+}</code></pre>
+<p>Here, ggplot2 package will be used. We can save this R Script as diamond_plot.R in the R folder of our package.</p>
+<p>We can take a loot at this function.</p>
+<pre class="r"><code># Draw sample plot with the function.
+
+df.test &lt;- data.frame(x = rnorm(10),
+                      y = rnorm(10))
+diamond_plot(df.test, &#39;x&#39;, &#39;y&#39;)</code></pre>
+<p><img src="/blog/2019-10-29-r-blog_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Here, open the folder R, there should be an R Script file named diamond_plot.R</p>
+<p><img src="/blog/2019-10-29-r-blog_files/5.bmp" /></p>
+</div>
+<div id="write-the-document." class="section level2">
+<h2><span class="header-section-number">3.2</span> Write the document.</h2>
+<p>Make sure you are still under the working directory of the package by checking the directory under the console.</p>
+<p>Library the required packages in the concole.</p>
+<pre class="r"><code>library(devtools)
+library(roxygen2)</code></pre>
+<p>Keep the script diamond_plot.R open, go to Code &gt;&gt; Insert Roxygen Skeleton. This will add documentation to the function. The script will be like this.</p>
+<p><img src="/blog/2019-10-29-r-blog_files/6.bmp" /></p>
+<ul>
+<li><p><span class="citation">@param</span> indicates the parameters you used</p></li>
+<li><p><span class="citation">@return</span> indicates the return type</p></li>
+<li><p><span class="citation">@export</span> is to add this function to the NAMESPACE file, so that it will be accessible to users</p></li>
+<li><p><span class="citation">@importFrom</span> indicates the packages needed</p></li>
+<li><p><span class="citation">@examples</span> is where you can write an example, like what we did above</p></li>
+</ul>
+<p>We can also open the DESCRIPTION file in the root index of the package to edit the Title, Version, Author of this package.</p>
+<p><img src="/blog/2019-10-29-r-blog_files/7.bmp" /></p>
+</div>
+<div id="add-sample-data" class="section level2">
+<h2><span class="header-section-number">3.3</span> Add Sample Data</h2>
+<p>To add sample data to the package, make a data folder. Just click on the New Folder bottom on the right bottom of the RStudio.</p>
+<p>Save the data in using .RData file by type the following in the console.</p>
+<pre class="r"><code># Sample data
+sample_data &lt;- data.frame(x = rnorm(10),
+                          y = rnorm(10),
+                          z = rnorm(10))
+                          
+save(sample_data, 
+     file = &#39;ExamplePackage/data/sample_data.RData&#39;)</code></pre>
+<p>    </p>
+</div>
+</div>
+<div id="install-and-check-the-packages" class="section level1">
+<h1><span class="header-section-number">4</span> Install and Check the Packages</h1>
+<p>Using document function in the consule to check the package, make sure you are in the same working directory as the package.</p>
+<pre class="r"><code># Check the function
+document()</code></pre>
+<p>Then go down one level in the working director and run the following code in the console.</p>
+<pre class="r"><code># Go down one level
+setwd(&#39;..&#39;)
+
+# Install the package
+install(&#39;ExamplePackage&#39;)</code></pre>
+<p>After the process finishes, the implement of our package successes.</p>
+<div id="check-the-document-and-data" class="section level2">
+<h2><span class="header-section-number">4.1</span> Check the Document and Data</h2>
+<p>Type in the console to test the package.</p>
+<pre class="r"><code># See the document
+?diamond_plot
+
+# See the data
+data(sample_data)</code></pre>
+</div>
+</div>
+<div id="upload-the-package" class="section level1">
+<h1><span class="header-section-number">5</span> Upload the Package</h1>
+<p>Make a new repository with the same name as our package, and make it public. Add the package to Github.</p>
+<p>To install our package from the Github just type in console:</p>
+<pre class="r"><code>devtools::install_github(&#39;yourusername/ExamplePackage&#39;)</code></pre>
+</div>
+</div>
+          
+          <p class="post-meta border-bottom pb-3 mb-0 mt-3">Updated on 29 Oct 2019</p>
+          <nav class="pagination mt-3">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            <a class="nav nav-prev" href="/blog/"><i class="ti-arrow-left mr-2"></i>Blogs</a>
+            
+            
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /details page -->
+
+
+
+
+
+  </div><!-- footer -->
+<footer class="section bg-gray pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 text-md-left text-center">
+       <p></p>
+      </div>
+      <div class="col-md-4 text-md-right text-center">
+        <ul class="list-inline mb-3">
+          
+          <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="mailto:%3choz4003@med.cornell.edu%3e"><i class="ti-email"></i></a></li>
+          
+          <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="https://twitter.com/hongyao_zhu/"><i class="ti-twitter-alt"></i></a></li>
+          
+          <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="https://github.com/hongyaozhu98"><i class="ti-github"></i></a></li>
+          
+          <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="https://www.linkedin.com/in/hongyao-zhu-b90530191"><i class="ti-linkedin"></i></a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- /footer -->
+
+<!-- Bootstrap JS -->
+<script src="/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- match-height JS -->
+<script src="/plugins/match-height/jquery.matchHeight-min.js"></script>
+<!-- highlight -->
+<script src="/plugins/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<!-- Main Script -->
+
+<script src="/js/script.min.js"></script></body>
+
+</html>
