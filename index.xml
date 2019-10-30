@@ -17,7 +17,7 @@
       <pubDate>Tue, 29 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/r-blog/</guid>
-      <description>1 Required Package2 Create the Package3 Implementation of Package3.1 Create a Function3.2 Write the document.3.3 Add Sample Data4 Install and Check the Packages4.1 Check the Document and Data5 Upload the Package1 Required PackageTo make our own R package, we will use devtools and roxygen2 packages. Make sure to install these two packages using install.packages() function.</description>
+      <description>1 Required Package2 Create the Package3 Implementation of Package3.1 Create a Function3.2 Write the document.3.3 Add Sample Data4 Install and Check the Packages4.1 Check the Document and Data5 Upload the Package6 Acknowledge1 Required PackageTo make our own R package, we will use devtools and roxygen2 packages. Make sure to install these two packages using install.</description>
     </item>
     
   </channel>

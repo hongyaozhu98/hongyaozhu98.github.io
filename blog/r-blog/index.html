@@ -178,6 +178,7 @@
 <li><a href="#check-the-document-and-data"><span class="toc-section-number">4.1</span> Check the Document and Data</a></li>
 </ul></li>
 <li><a href="#upload-the-package"><span class="toc-section-number">5</span> Upload the Package</a></li>
+<li><a href="#acknowledge"><span class="toc-section-number">6</span> Acknowledge</a></li>
 </ul>
 </div>
 
@@ -203,24 +204,25 @@
 <div id="create-a-function" class="section level2">
 <h2><span class="header-section-number">3.1</span> Create a Function</h2>
 <p>Go to File &gt;&gt; New File &gt;&gt; R Script to create an R file with a function for our package.</p>
-<p>A sample function will be</p>
-<pre class="r"><code># Sample function with library.
+<p>Here, I will do a sample bubble plot function with ggplot. A bubble plot can show 3 numeric variables in a 2-d plot. Usually, one variable will be shown by the size of the point, so we can use geom_point function to plot this. This kind of plot is straight forward especially with one variable related to the number or the size of the data.</p>
+<pre class="r"><code># Bubble Plot Function
 
 library(ggplot2)
-diamond_plot &lt;- function(df, varx, vary){
-  ggplot(df, aes(x=get(varx), y=get(vary))) +
-  geom_point(shape=23, fill=&quot;blue&quot;, color=&quot;darkred&quot;, size=3)
+bubble_plot &lt;- function(df, varx, vary, varz){
+  ggplot(df, aes(x=get(varx), y=get(vary), size = get(varz))) +
+    geom_point(fill=&quot;blue&quot;, color=&quot;darkred&quot;) + 
+    labs(x = varx, y = vary, size = varz)
 }</code></pre>
-<p>Here, ggplot2 package will be used. We can save this R Script as diamond_plot.R in the R folder of our package.</p>
+<p>Here, ggplot2 package will be used. We can save this R Script as bubble_plot.R in the R folder of our package.</p>
 <p>We can take a loot at this function.</p>
 <pre class="r"><code># Draw sample plot with the function.
 
 df.test &lt;- data.frame(x = rnorm(10),
-                      y = rnorm(10))
-diamond_plot(df.test, &#39;x&#39;, &#39;y&#39;)</code></pre>
+                      y = rnorm(10),
+                      z = rnorm(10))
+bubble_plot(df.test, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;)</code></pre>
 <p><img src="/blog/2019-10-29-r-blog_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>Here, open the folder R, there should be an R Script file named diamond_plot.R</p>
-<p><img src="/blog/2019-10-29-r-blog_files/5.bmp" /></p>
+<p>Here, open the folder R, there should be an R Script file named bubble_plot.R</p>
 </div>
 <div id="write-the-document." class="section level2">
 <h2><span class="header-section-number">3.2</span> Write the document.</h2>
@@ -228,8 +230,24 @@ diamond_plot(df.test, &#39;x&#39;, &#39;y&#39;)</code></pre>
 <p>Library the required packages in the concole.</p>
 <pre class="r"><code>library(devtools)
 library(roxygen2)</code></pre>
-<p>Keep the script diamond_plot.R open, go to Code &gt;&gt; Insert Roxygen Skeleton. This will add documentation to the function. The script will be like this.</p>
-<p><img src="/blog/2019-10-29-r-blog_files/6.bmp" /></p>
+<p>Keep the script bubble_plot.R open, go to Code &gt;&gt; Insert Roxygen Skeleton. This will add documentation to the function. The script will be like this.</p>
+<pre class="r"><code>#&#39; Title
+#&#39;
+#&#39; @param df 
+#&#39; @param varx 
+#&#39; @param vary 
+#&#39; @param varz 
+#&#39;
+#&#39; @return
+#&#39; @export
+#&#39;
+#&#39; @examples
+bubble_plot &lt;- function(df, varx, vary, varz){
+  ggplot(df, aes(x=get(varx), y=get(vary), size = get(varz))) +
+    geom_point(fill=&quot;blue&quot;, color=&quot;darkred&quot;) + 
+    labs(x = varx, y = vary, size = varz)
+}</code></pre>
+<p>We can take a look into the parameters we may use.</p>
 <ul>
 <li><p><span class="citation">@param</span> indicates the parameters you used</p></li>
 <li><p><span class="citation">@return</span> indicates the return type</p></li>
@@ -270,7 +288,7 @@ install(&#39;ExamplePackage&#39;)</code></pre>
 <h2><span class="header-section-number">4.1</span> Check the Document and Data</h2>
 <p>Type in the console to test the package.</p>
 <pre class="r"><code># See the document
-?diamond_plot
+?bubble_plot
 
 # See the data
 data(sample_data)</code></pre>
@@ -281,6 +299,10 @@ data(sample_data)</code></pre>
 <p>Make a new repository with the same name as our package, and make it public. Add the package to Github.</p>
 <p>To install our package from the Github just type in console:</p>
 <pre class="r"><code>devtools::install_github(&#39;yourusername/ExamplePackage&#39;)</code></pre>
+</div>
+<div id="acknowledge" class="section level1">
+<h1><span class="header-section-number">6</span> Acknowledge</h1>
+<p>This blog is based on Professor Elizabeth Sweeney’s lecture note.</p>
 </div>
 </div>
           

@@ -42,19 +42,20 @@ To write a useful package, you may create the function, documentation, and the s
 
 Go to File >> New File >> R Script to create an R file with a function for our package.
 
-A sample function will be 
+Here, I will do a sample bubble plot function with ggplot. A bubble plot can show 3 numeric variables in a 2-d plot. Usually, one variable will be shown by the size of the point, so we can use geom_point function to plot this. This kind of plot is straight forward especially with one variable related to the number or the size of the data.
 
 ```{r, message=FALSE}
-# Sample function with library.
+# Bubble Plot Function
 
 library(ggplot2)
-diamond_plot <- function(df, varx, vary){
-  ggplot(df, aes(x=get(varx), y=get(vary))) +
-  geom_point(shape=23, fill="blue", color="darkred", size=3)
+bubble_plot <- function(df, varx, vary, varz){
+  ggplot(df, aes(x=get(varx), y=get(vary), size = get(varz))) +
+    geom_point(fill="blue", color="darkred") + 
+    labs(x = varx, y = vary, size = varz)
 }
 ```
 
-Here, ggplot2 package will be used. We can save this R Script as diamond_plot.R in the R folder of our package.
+Here, ggplot2 package will be used. We can save this R Script as bubble_plot.R in the R folder of our package.
 
 We can take a loot at this function.
 
@@ -62,14 +63,13 @@ We can take a loot at this function.
 # Draw sample plot with the function.
 
 df.test <- data.frame(x = rnorm(10),
-                      y = rnorm(10))
-diamond_plot(df.test, 'x', 'y')
+                      y = rnorm(10),
+                      z = rnorm(10))
+bubble_plot(df.test, 'x', 'y', 'z')
 
 ```
 
-Here, open the folder R, there should be an R Script file named diamond_plot.R
-
-![](/blog/2019-10-29-r-blog_files/5.bmp)
+Here, open the folder R, there should be an R Script file named bubble_plot.R
 
 ## Write the document.
 
@@ -82,9 +82,28 @@ library(devtools)
 library(roxygen2)
 ```
 
-Keep the script diamond_plot.R open, go to Code >> Insert Roxygen Skeleton. This will add documentation to the function. The script will be like this. 
+Keep the script bubble_plot.R open, go to Code >> Insert Roxygen Skeleton. This will add documentation to the function. The script will be like this. 
 
-![](/blog/2019-10-29-r-blog_files/6.bmp)
+```{r, message=FALSE}
+#' Title
+#'
+#' @param df 
+#' @param varx 
+#' @param vary 
+#' @param varz 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+bubble_plot <- function(df, varx, vary, varz){
+  ggplot(df, aes(x=get(varx), y=get(vary), size = get(varz))) +
+    geom_point(fill="blue", color="darkred") + 
+    labs(x = varx, y = vary, size = varz)
+}
+```
+
+We can take a look into the parameters we may use.
 
 * @param indicates the parameters you used
 
@@ -146,7 +165,7 @@ Type in the console to test the package.
 
 ```{r, eval=FALSE}
 # See the document
-?diamond_plot
+?bubble_plot
 
 # See the data
 data(sample_data)
@@ -161,3 +180,7 @@ To install our package from the Github just type in console:
 ```{r, eval=FALSE}
 devtools::install_github('yourusername/ExamplePackage')
 ```
+
+# Acknowledge
+
+This blog is based on Professor Elizabeth Sweeney's lecture note.
